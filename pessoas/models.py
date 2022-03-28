@@ -50,7 +50,7 @@ class Pessoa(models.Model):
     batizado = models.CharField(max_length=1, choices=BATISMO_CHOICES, default='M')
     data_batismo = models.DateField(u'Data de Batismo', auto_now=False, auto_now_add=False, null=True)
     foto_perfil = models.FileField(upload_to='foto_perfil', blank=True, null=True)
-    #povoado = models.ForeignKey(Povoado, on_delete=models.PROTECT, verbose_name='Povoado')
+    povoado = models.ForeignKey(Povoado, on_delete=models.PROTECT, verbose_name='Povoado', blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     funcao_lideranca = models.ForeignKey(FuncaoLideranca, 
             on_delete=models.PROTECT, verbose_name='Função Liderança', blank=True, null=True)
