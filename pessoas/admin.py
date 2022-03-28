@@ -1,24 +1,15 @@
 from django.contrib import admin
-from django.contrib.admin.filters import SimpleListFilter
-# Register your models here.
+#from django.contrib.admin.filters import SimpleListFilter
+from django.contrib.auth.admin import UserAdmin
 from .models import Pessoa, FuncaoLideranca
 
-class CustomFilter(SimpleListFilter):
-    title = "Custom filter"
-    parameter_name = "custom"
+class PessoaAdmin(UserAdmin):
+    list_display = ('nome','povoado')
+    search_fields = ('nome', 'povoado')
 
-    def lookups(self, request, model_admin):
-        return {
-            ("palmeirinha", "Palmeirinha")
-            ("varzea dos bois", "Varzea dos bois")
-            ("bananeira", "Bananeira")
-            ("laranjeira", "Laranjeira")
-        }
-
-    def queryset(self, request, queryset):
-        if self.value():
-            return queryset.filter(povoado_text__contains=self.value())
-        return queryset        
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()      
 
 
 admin.site.register(Pessoa)
