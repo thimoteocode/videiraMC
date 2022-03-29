@@ -23,7 +23,7 @@ class Conexao(models.Model):
     tipo_conexao = models.CharField(max_length=1, choices=TIPOCONEXAO_CHOICES)
     dia_semana_reuniao = models.CharField(max_length=1, choices=DIASEMANA_CHOICES)
     hora_reuniao = models.TimeField(max_length=6)
-    povoado = models.ForeignKey(Povoado, on_delete=models.PROTECT, verbose_name='Povoado')
+    povoado = models.ForeignKey(Povoado, on_delete=models.PROTECT, verbose_name='Povoado', blank=True, null=True)
     lider = models.ForeignKey(Pessoa, on_delete=models.PROTECT, related_name='Líder')
     complemento = models.CharField(max_length=200, null=True,blank=True)
     cidade = models.CharField(max_length=50, blank=True, null=True)
